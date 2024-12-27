@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="WPFGameShop.Views.GameAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFGameShop.Tools"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Label>Game Name</Label>
+            <TextBox Text="{Binding GameName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label>Price</Label>
+            <TextBox Text="{Binding GamePrice, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"></TextBox>
+
+            
+
+            <Button Command="{Binding AddGameCommand}">Add Game</Button>
+            <Button Command="{Binding ModifyGameCommand}">Modify Game</Button>
+            <Button Command="{Binding DeleteGameCommand}">Delete Game</Button>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Label>Cover Image Path</Label>
+            <TextBox Text="{Binding CoverImagePath, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"></TextBox>
+        </StackPanel>
+        
+        <StackPanel Grid.RowSpan="2" Grid.Row="0" Grid.Column="1" Margin="10 0 0 0">
+            <TextBlock FontSize="24" Text="Games in DB" Margin="0 0 0 10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <DataGrid ColumnWidth="*" ItemsSource="{Binding Games, Mode=TwoWay}" SelectedItem="{Binding SelectedGame}"
+    Height="200"
+    IsReadOnly="True"
+    CanUserAddRows="False"
+    AutoGenerateColumns="False"
+    CanUserDeleteRows="False"
+    CanUserResizeColumns="False"
+    CanUserResizeRows="False"
+    VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="40"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"  Width="80"/>
+                    <DataGridTemplateColumn Header="Cover">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding CoverImagePath}" Width="50" Height="50" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn> 
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

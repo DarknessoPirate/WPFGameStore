@@ -1,0 +1,225 @@
+﻿<Window x:Class="WPFGameShop.Views.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFGameShop.Views"
+        mc:Ignorable="d"
+        Title="RegistrationWindow" Height="500" Width="800" ResizeMode="NoResize" >
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF984063"/>
+                <GradientStop Color="#FF47416A" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+
+        <Border Width="330"
+            Height="420"
+            Background="White"
+            CornerRadius="6">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15"
+                              Direction ="-90" 
+                              RenderingBias ="Quality" 
+                              ShadowDepth ="2" 
+                              Color ="Gray" />
+            </Border.Effect>
+            <StackPanel Orientation="Vertical"
+                    Margin="35">
+                <TextBlock Text="Register" 
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       FontWeight="Bold"
+                       Padding="5"
+                />
+                <Grid VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Username" 
+                   Grid.Row="0"
+                   Margin="0,10"
+                   HorizontalAlignment="Left"/>
+
+                    <TextBox  Grid.Column="1"
+                  Grid.Row="1"
+                  Padding="0,5"
+                  Width="255"
+                  BorderThickness="0,0,0,1"
+                  HorizontalAlignment="Left"
+                  Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="BorderBrush" Value="#FFA4A4A4"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,1">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                                                </Trigger>
+                                                <DataTrigger Binding="{Binding IsUsernameValid}" Value="true">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Green"/>
+                                                    <Setter Property="ToolTip" Value="Valid username format"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsUsernameValid}" Value="false">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Red"/>
+                                                    <Setter Property="ToolTip" Value="Invalid username format"/>
+                                                </DataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <TextBlock Text="Email" 
+                   Grid.Row="2"
+                   Margin="0,10"
+                   HorizontalAlignment="Left"/>
+
+                    <TextBox  Grid.Column="1"
+                  Grid.Row="3"
+                  Padding="0,5"
+                  Width="255"
+                  BorderThickness="0,0,0,1"
+                  HorizontalAlignment="Left"
+                  Text="{Binding UserEmail, UpdateSourceTrigger=PropertyChanged}" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="BorderBrush" Value="#FFA4A4A4"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,1">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                                                </Trigger>
+                                                <DataTrigger Binding="{Binding IsEmailValid}" Value="1">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Green"/>
+                                                    <Setter Property="ToolTip" Value="Valid email format"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsEmailValid}" Value="0">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="#FFA4A4A4"/>
+                                                    <Setter Property="ToolTip" Value="Invalid email format"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsEmailValid}" Value="-1">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Red"/>
+                                                    <Setter Property="ToolTip" Value="Invalid email format"/>
+                                                </DataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <TextBlock Text="Password" 
+                   Grid.Row="4"
+                   Margin="0,10"
+                   HorizontalAlignment="Left"/>
+                    <PasswordBox x:Name="PasswordBox"
+		              Grid.Row="5"                      
+                      Padding="0,5"                           
+                      Width="255"
+                      BorderThickness="0,0,0,1"
+                      HorizontalAlignment="Left"/>
+
+                    <TextBlock Text="Money" 
+                     Grid.Row="6"
+                     Margin="0,10"
+                     HorizontalAlignment="Left"/>
+                    
+                        <TextBox  Grid.Column="1"
+                        Grid.Row="7"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="{Binding UserMoney, UpdateSourceTrigger=PropertyChanged}" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="BorderBrush" Value="#FFA4A4A4"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,1">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                                                </Trigger>
+                                                <DataTrigger Binding="{Binding IsMoneyValid}" Value="true">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Green"/>
+                                                    <Setter Property="ToolTip" Value="Valid username format"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsMoneyValid}" Value="false">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="Red"/>
+                                                    <Setter Property="ToolTip" Value="Invalid username format"/>
+                                                </DataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                </Grid>
+                <Button x:Name="RegisterBtn" 
+                    Content="Register" 
+                    Foreground="White"
+                    Background="#FFF64668"
+                    Margin="0,25"
+                    Height="35"
+                    Width="250"
+		    Command="{Binding RegisterCommand}" 
+		    CommandParameter="{Binding ElementName=PasswordBox}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border x:Name="LoginBorder" Background="{TemplateBinding Background}"
+                                            CornerRadius="16">
+                                            <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FA7F97" TargetName="LoginBorder"  />
+                                                <Setter Property="TextBlock.Foreground" Value="Black"  TargetName="LoginBorder" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
