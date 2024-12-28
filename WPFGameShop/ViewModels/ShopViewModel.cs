@@ -121,9 +121,16 @@ namespace WPFGameShop.ViewModels
                     {
                         db.Entry(ug).State = EntityState.Unchanged;
                     }
-
-                    db.UserGames.Add(new UserGame { UserId = CurrentUser.Id, GameId = SelectedGame.Id });
-                    db.SaveChanges();
+                    try
+                    {
+                        db.UserGames.Add(new UserGame { UserId = CurrentUser.Id, GameId = SelectedGame.Id });
+                        db.SaveChanges();
+                    }catch (Exception)
+                    {
+                        MessageBox.Show("You can't buy this game");
+                        return;
+                    }
+                   
                     CurrentMoney -= SelectedGame.Price;
                     CurrentUser.Money = CurrentMoney;
                     _homeVM.RefreshBalance(CurrentMoney);
@@ -135,6 +142,11 @@ namespace WPFGameShop.ViewModels
                 }
             }
                          
+        }
+
+        public void RefreshGameList()
+        {
+            Games = RepositoryGame.GetAllGamesFromDb();
         }
 
         private void OpenGameWindow(object parameter)

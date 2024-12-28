@@ -104,14 +104,15 @@ namespace WPFGameShop.ViewModels
             {               
                 var currentUser = await RepositoryUser.GetUserFromDb(newUser);
                 var homeVM = new HomeViewModel(currentUser);
+                var shopVM = new ShopViewModel(currentUser, ref homeVM);
                 Tabs.Add(new TabItem { Header = "Home", Content = new HomeView(), DataContext = homeVM});
-                Tabs.Add(new TabItem { Header = "Shop", Content = new ShopView(), DataContext = new ShopViewModel(currentUser, ref homeVM)});
+                Tabs.Add(new TabItem { Header = "Shop", Content = new ShopView(), DataContext = shopVM});
                 Tabs.Add(new TabItem { Header = "Reviews", Content = new ReviewsView(), DataContext = new ReviewsViewModel(currentUser) });
                 Tabs.Add(new TabItem { Header = "Profile", Content = new ProfileView(), DataContext = new ProfileViewModel(currentUser, Tabs) });     
 
                 if (currentUser.Name == "filip")
                 {
-                    Tabs.Add(new TabItem { Header = "GameAdd", Content = new GameAddView(), DataContext = new GameAddViewModel() });
+                    Tabs.Add(new TabItem { Header = "GameAdd", Content = new GameAddView(), DataContext = new GameAddViewModel(ref shopVM) });
                 }
 
             }

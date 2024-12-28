@@ -16,9 +16,10 @@ namespace WPFGameShop.ViewModels
 {
     public class GameAddViewModel : ViewModelBase
     {
-        public GameAddViewModel() 
+        public GameAddViewModel(ref ShopViewModel shopVM) 
         {
             Games = RepositoryGame.GetAllGamesFromDb();
+            _shopVM = shopVM;
         }
         #region properties
         private ObservableCollection<Game> _games;
@@ -26,6 +27,8 @@ namespace WPFGameShop.ViewModels
         private string _gamePrice;
         private string _coverImagePath;
         private Game _selectedGame;
+        private ShopViewModel _shopVM;
+
         #endregion
 
         #region accessors
@@ -153,6 +156,8 @@ namespace WPFGameShop.ViewModels
                     GameName = string.Empty;
                     GamePrice = string.Empty;
                     CoverImagePath = string.Empty;
+
+                    _shopVM.RefreshGameList();
                 }
                 else
                 {
@@ -171,6 +176,7 @@ namespace WPFGameShop.ViewModels
             {
                 Games.Remove(SelectedGame);
                 MessageBox.Show("Removed Game from DB!");
+                _shopVM.RefreshGameList();
             }
             else
             {
@@ -197,6 +203,7 @@ namespace WPFGameShop.ViewModels
                     GameName = string.Empty;
                     GamePrice = string.Empty;
                     CoverImagePath = string.Empty;
+                    _shopVM.RefreshGameList();
                 }
                 else
                 {
