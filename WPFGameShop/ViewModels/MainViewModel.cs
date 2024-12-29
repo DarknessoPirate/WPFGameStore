@@ -107,7 +107,7 @@ namespace WPFGameShop.ViewModels
                 var shopVM = new ShopViewModel(currentUser, ref homeVM);
                 Tabs.Add(new TabItem { Header = "Home", Content = new HomeView(), DataContext = homeVM});
                 Tabs.Add(new TabItem { Header = "Shop", Content = new ShopView(), DataContext = shopVM});
-                Tabs.Add(new TabItem { Header = "Reviews", Content = new ReviewsView(), DataContext = new ReviewsViewModel(currentUser) });
+                Tabs.Add(new TabItem { Header = "Reviews", Content = new ReviewsView(), DataContext = new ReviewsViewModel(currentUser, ref shopVM) });
                 Tabs.Add(new TabItem { Header = "Profile", Content = new ProfileView(), DataContext = new ProfileViewModel(currentUser, Tabs) });     
 
                 if (currentUser.Name == "filip")

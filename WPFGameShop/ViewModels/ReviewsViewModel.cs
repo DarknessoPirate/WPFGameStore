@@ -14,10 +14,11 @@ namespace WPFGameShop.ViewModels
 {
     public class ReviewsViewModel : ViewModelBase
     { 
-        public ReviewsViewModel(User user)
+        public ReviewsViewModel(User user, ref ShopViewModel shopVm)
         {
             _currentUser = user;
             _reviews = RepositoryReview.GetAllReviews();
+            _shopVm = shopVm;
         }
 
         #region properties
@@ -25,6 +26,7 @@ namespace WPFGameShop.ViewModels
         private Review _selectedReview;
         private ObservableCollection<Review> _reviews;    
         private string _reviewAuthor;
+        private ShopViewModel _shopVm;
         #endregion
 
 
@@ -170,11 +172,13 @@ namespace WPFGameShop.ViewModels
         private void ShowCurrentUserReviews()
         {
             Reviews = RepositoryReview.GetUserReviewsFromDb(CurrentUser.Id);
+            _shopVm.RefreshGameList();
         }
 
         private void ShowAllReviews()
         {
             Reviews = RepositoryReview.GetAllReviews();
+            _shopVm.RefreshGameList();
         }
 
         private void ShowAuthorFromTextBoxReviews()
@@ -183,6 +187,7 @@ namespace WPFGameShop.ViewModels
             {
                 var author = RepositoryUser.GetUserFromDb(ReviewAuthor);
                 Reviews = RepositoryReview.GetUserReviewsFromDb(author.Id);
+                _shopVm.RefreshGameList();
             }
             else
             {
