@@ -122,6 +122,7 @@
                                             <Setter Property="TextAlignment" Value="Center"/>
                                             <Setter Property="VerticalAlignment" Value="Center"/>
                                             <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Padding" Value="10"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                     <DataGridTextColumn.HeaderStyle>
