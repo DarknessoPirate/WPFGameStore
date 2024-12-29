@@ -146,7 +146,7 @@ namespace WPFGameShop.ViewModels
                 {
                     Name = GameName,
                     Price = decimalPrice,
-                    CoverImagePath = CoverImagePath
+                    CoverImagePath = Directory.GetCurrentDirectory() + "/" +CoverImagePath
                 };
 
                 if (RepositoryGame.AddGameToDb(newGame))
