@@ -24,7 +24,7 @@ namespace WPFGameShop.Models
         [NotMapped]
         public double AvgReating { get {
                 ObservableCollection<Review> revs = RepositoryReview.GetGameReviews(this);
-                return revs.Count == 0 ? double.NaN : revs.Average(r => r.Score);
+                return revs.Count == 0 ? 0 : revs.Average(r => r.Score);
             }
         }
     }
