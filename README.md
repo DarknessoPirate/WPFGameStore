@@ -20,6 +20,10 @@ Game Store is a Windows Presentation Foundation (WPF) application built using .N
 - **MVVM Design Pattern** - Ensures separation of concerns and easier maintainability.
 - **Triggers in Views** - For dynamic UI behavior.
 
+## Authors
+- [filip-wojc](https://github.com/filip-wojc)
+- [DarknessoPirate](https://github.com/DarknessoPirate)
+
 ## Application Demo
 _Screenshots of the application can be found below:_
 #1. User registration and login page
@@ -62,5 +66,7 @@ _Screenshots of the application can be found below:_
 3. **Email Notifications** - Notify users about new game in store.
 4. **Improved Review Features** - Add upvoting and downvoting for reviews.
 
+### License
+This project is available for use under the MIT License.
 
 
