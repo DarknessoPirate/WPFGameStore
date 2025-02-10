@@ -4,8 +4,8 @@
 Game Store is a Windows Presentation Foundation (WPF) application built using .NET and C#. The application connects to a SQL database to store and manage information about games, users, and reviews. It employs the Entity Framework for database interactions and follows the MVVM (Model-View-ViewModel) architectural pattern. Additionally, one of the screens integrates an external API to display weather and location information. The project makes use of triggers in the views for enhanced user interface interactivity.
 
 ## Authors
-- [filip-wojc](https://github.com/filip-wojc)
 - [DarknessoPirate](https://github.com/DarknessoPirate)
+- [filip-wojc](https://github.com/filip-wojc)
 
 ## Features
 1. **User Registration and Login** - Secure registration and login system with password hashing for data protection.
